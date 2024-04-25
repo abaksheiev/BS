@@ -9,7 +9,8 @@ namespace BS.Contracts.PostAggregations.Validators
             errors = [];
             if (entity == null)
             {
-                return false;
+                errors.Add($"Validation failed: {nameof(entity)} is null.");
+                return errors.Any();
             }
 
             if (string.IsNullOrWhiteSpace(entity.Name))

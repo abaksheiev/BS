@@ -32,7 +32,7 @@ namespace BS.Init
             services.AddMediatR(i => i.RegisterServicesFromAssembly(typeof(CreatePostCommandHandler).Assembly));
 
             // Service
-            services.AddSingleton(typeof(IValidator<PostApiDto>), typeof(PostCreateModelValidator));
+            services.AddSingleton(typeof(IValidator<PostApiDto>), typeof(PostApiDtoValidator));
             services.AddSingleton(typeof(IValidator<AuthorApiDto>), typeof(AuthorApiDtoValidator));
 
             services.AddEndpointsApiExplorer();

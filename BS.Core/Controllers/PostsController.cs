@@ -25,11 +25,10 @@ namespace BS.Contracts.PostAggregations.Controllers
         }
 
         [HttpGet]
-        [Produces("application/json")]
         [Route("{postId}")]
-        public async Task<IActionResult> Get(Guid postId, [FromQuery]bool isAuthorInclude)
+        public async Task<IActionResult> Get(Guid postId, [FromQuery]bool ai)
         {
-            var query = GetPostByIdQuery.Create(postId, isAuthorInclude);
+            var query = GetPostByIdQuery.Create(postId, ai);
 
             var result = await Mediator.Send(query);
 
@@ -42,7 +41,6 @@ namespace BS.Contracts.PostAggregations.Controllers
         }
 
         [HttpPost]
-        [Produces("application/json")]
         public async Task<IActionResult> Post([FromBody] PostApiDto model)
         {
             if (_postValidator.Validate(model, out List<string> errors))
