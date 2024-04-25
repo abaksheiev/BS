@@ -1,4 +1,4 @@
-﻿namespace BS.Application.Models
+﻿namespace BS.Repositories.Models
 {
     public class Author
     {

@@ -1,5 +1,5 @@
-﻿using BS.Application;
-using BS.Application.Posts.CommandHandlers;
+﻿using BS.Repositories;
+using BS.Repositories.Posts.CommandHandlers;
 using BS.Contracts.ApiDtos;
 using BS.Contracts.PostAggregations.Controllers;
 using BS.Contracts.PostAggregations.Validators;
@@ -24,7 +24,7 @@ namespace BS.IntegrationTests.Core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(BS.Init.MappingProfile), typeof(BS.Init.MappingProfile));
-            services.AddAutoMapper(typeof(BS.Application.MappingApplicationProfile), typeof(BS.Application.MappingApplicationProfile));
+            services.AddAutoMapper(typeof(BS.Repositories.MappingApplicationProfile), typeof(BS.Repositories.MappingApplicationProfile));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             
             services.AddDbContext<BlogContext>(options =>

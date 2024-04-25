@@ -1,11 +1,11 @@
 ﻿
 using AutoMapper;
-using BS.Application.Posts.Queries;
+using BS.Repositories.Posts.Queries;
 using BS.Contracts.PostAggregations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BS.Application.Posts.QueryHandlers
+namespace BS.Repositories.Posts.QueryHandlers
 {
     public class GetPostByIdQueryHandler(BlogContext _ctx, IMapper _mapper) : IRequestHandler<GetPostByIdQuery, PostDto>
     {

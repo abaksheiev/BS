@@ -1,4 +1,4 @@
-﻿using BS.Application.Models;
+﻿using BS.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BS.Application.Configurations
+namespace BS.Repositories.Configurations
 {
     public class AuthorConfigurations : IEntityTypeConfiguration<Author>
     {

@@ -1,7 +1,7 @@
 ﻿using BS.Contracts.PostAggregations;
 using MediatR;
 
-namespace BS.Application.Posts.Queries
+namespace BS.Repositories.Posts.Queries
 {
     public class GetPostByIdQuery : IRequest<PostDto>
     {

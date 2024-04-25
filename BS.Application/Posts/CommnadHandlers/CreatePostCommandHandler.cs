@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BS.Application.Models;
-using BS.Application.Posts.Commands;
+using BS.Repositories.Models;
+using BS.Repositories.Posts.Commands;
 using BS.Contracts.PostAggregations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BS.Application.Posts.CommandHandlers
+namespace BS.Repositories.Posts.CommandHandlers
 {
     public class CreatePostCommandHandler(BlogContext _ctx, IMapper _mapper)
         : IRequestHandler<CreatingPostCommand, PostDto>

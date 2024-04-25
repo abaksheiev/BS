@@ -1,8 +1,8 @@
-﻿using BS.Application.Models;
+﻿using BS.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BS.Application.Configurations
+namespace BS.Repositories.Configurations
 {
     public class PostConfigurations : IEntityTypeConfiguration<Post>
     {

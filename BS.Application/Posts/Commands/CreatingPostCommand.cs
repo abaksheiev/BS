@@ -1,7 +1,7 @@
 ﻿using BS.Contracts.PostAggregations;
 using MediatR;
 
-namespace BS.Application.Posts.Commands
+namespace BS.Repositories.Posts.Commands
 {
     public class CreatingPostCommand : IRequest<PostDto>
     {

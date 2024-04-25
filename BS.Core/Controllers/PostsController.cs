@@ -1,6 +1,6 @@
-using BS.Application.Posts.Queries;
+using BS.Repositories.Posts.Queries;
 using BS.Core.Controllers;
-using BS.Application.Posts.Commands;
+using BS.Repositories.Posts.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BS.Contracts.ApiDtos;

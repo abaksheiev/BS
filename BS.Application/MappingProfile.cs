@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using BS.Contracts.PostAggregations;
-using BS.Application.Models;
-using BS.Application.Posts.Commands;
+using BS.Repositories.Models;
+using BS.Repositories.Posts.Commands;
 
-namespace BS.Application
+namespace BS.Repositories
 {
     public class MappingApplicationProfile : Profile
     {
