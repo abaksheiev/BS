@@ -1,0 +1,6 @@
+@BS.Init_HostAddress = http://localhost:5038
+
+GET {{BS.Init_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

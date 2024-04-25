@@ -1,0 +1,6 @@
+@BS.WebApi_HostAddress = http://localhost:5045
+
+GET {{BS.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

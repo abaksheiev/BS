@@ -1,0 +1,15 @@
+﻿{
+    "title": "Sample Title",
+    "description": "This is a sample description.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": {
+        "name": "John",
+        "surname": "Doe"
+    }
+}
+
+{
+    "title": "Sample Title",
+    "description": "This is a sample description.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+}
