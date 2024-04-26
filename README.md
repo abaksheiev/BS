@@ -1,12 +1,11 @@
 # Fake blogging system(CQRS)
 
 ```html
-Docker
-- Docker file is in BS.Init project
+- Start project: BS.Init 
 - Docker image : abaksheiev/bsinit
 - Settings
 	- IS_SWAGGER_ACTIVATED: True // Activate swagger, default value false
-- [:]/healthz // check if application was running susscessfully
+
 ```
 
 Run Docker Container
@@ -14,7 +13,7 @@ Run Docker Container
 docker run  --env=IS_SWAGGER_ACTIVATED=True -p 8181:8080 -d abaksheiev/bsinit:latest
 ```
 
-Checl healthy app
+Check healthy
 ```html
 http://localhost:8181/healthz
 ```
