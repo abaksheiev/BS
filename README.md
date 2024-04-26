@@ -14,6 +14,11 @@ Run Docker Container
 docker run  --env=IS_SWAGGER_ACTIVATED=True -p 8181:8080 -d abaksheiev/bsinit:latest
 ```
 
+Checl healthy app
+```html
+http://localhost:8181/healthz
+```
+
 Example of POST
 ```html
 $ curl -X 'POST' \
