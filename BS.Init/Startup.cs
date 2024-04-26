@@ -4,13 +4,12 @@ using BS.Contracts.ApiDtos;
 using BS.Contracts.PostAggregations.Controllers;
 using BS.Contracts.PostAggregations.Validators;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.OpenApi.Models;
 
 namespace BS.Init
 {
     public class Startup
     {
+        public const string IS_SWAGGER_ACTIVATED = "IS_SWAGGER_ACTIVATED";
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -46,38 +45,44 @@ namespace BS.Init
             services.AddAutoMapper(typeof(BS.Init.MappingProfile), typeof(BS.Init.MappingProfile));
             services.AddAutoMapper(typeof(BS.Repositories.MappingApplicationProfile), typeof(BS.Repositories.MappingApplicationProfile));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+            // Health check
+            services.AddHealthChecks();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .Build();
+            bool isSwaggerActivated;
+            bool.TryParse(configuration[IS_SWAGGER_ACTIVATED], out isSwaggerActivated);
+
+            if (isSwaggerActivated)
             {
                 app.UseSwagger(options =>
-                {
-                    options.SerializeAsV2 = true;
-                });
+            {
+                options.SerializeAsV2 = true;
+            });
                 app.UseSwaggerUI();
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                     options.RoutePrefix = string.Empty;
                 });
-
-
-                app.UseRouting();
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute(
-                        name: "default",
-                        pattern: "{controller=Posts}/{action=Get}/{id?}");
-                });
             }
-            else
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                app.UseExceptionHandler("/error");
-                app.UseHsts();
-            }
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Posts}/{action=Get}/{id?}");
+
+                endpoints.MapHealthChecks("/healthz");
+            });
+            app.UseExceptionHandler("/error");
+            app.UseHsts();
         }
     }
 }
