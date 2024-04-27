@@ -35,7 +35,7 @@ namespace BS.Domain
             return _mapper.Map<PostDto>(post);
         }
 
-        public Guid CreatePost(PostDto postData)
+        public async Task<Guid> CreatePostAsync(PostDto postData)
         {
             // Create a new Post
             Post post = new Post
@@ -59,7 +59,7 @@ namespace BS.Domain
 
             // Add post (with or without author) to the DbContext
             _dbContext.Posts.Add(post);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             return post.Id;
         }

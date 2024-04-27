@@ -16,7 +16,7 @@ namespace BS.Application.Posts.CommandHandlers
             var dtoPost = _mapper.Map<PostDto>(request);
 
             // Crate Post
-            var post = postAggregate.CreatePost(dtoPost);
+            var post = await postAggregate.CreatePostAsync(dtoPost);
 
             // Return created post
             return await postAggregate.GetPostById(post, true);

@@ -2,9 +2,8 @@
 using AutoMapper;
 using BS.Application.Posts.Queries;
 using BS.Contracts.PostAggregations;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 using BS.Domain;
+using MediatR;
 
 namespace BS.Application.Posts.QueryHandlers
 {
