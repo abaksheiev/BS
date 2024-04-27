@@ -1,8 +1,8 @@
-﻿using BS.Repositories.Configurations;
-using BS.Repositories.Models;
+﻿using BS.Application.Configurations;
+using BS.Application.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BS.Repositories
+namespace BS.Application
 {
     public class BlogContext : DbContext
     {

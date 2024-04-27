@@ -1,8 +1,9 @@
-﻿using BS.Repositories;
-using BS.Repositories.Posts.CommandHandlers;
+﻿using BS.Application;
+using BS.Application.Posts.CommandHandlers;
 using BS.Contracts.ApiDtos;
 using BS.Contracts.PostAggregations.Controllers;
 using BS.Contracts.PostAggregations.Validators;
+using BS.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace BS.Init
@@ -30,6 +31,8 @@ namespace BS.Init
 
             services.AddMediatR(i => i.RegisterServicesFromAssembly(typeof(CreatePostCommandHandler).Assembly));
 
+            // AggregateRoots
+            services.AddScoped(typeof(PostAggregate), typeof(PostAggregate));
             // Service
             services.AddSingleton(typeof(IValidator<PostApiDto>), typeof(PostApiDtoValidator));
             services.AddSingleton(typeof(IValidator<AuthorApiDto>), typeof(AuthorApiDtoValidator));
@@ -42,8 +45,8 @@ namespace BS.Init
                     options.UseInMemoryDatabase("FakeBlog"));
 
             // External nugets
-            services.AddAutoMapper(typeof(BS.Init.MappingProfile), typeof(BS.Init.MappingProfile));
-            services.AddAutoMapper(typeof(BS.Repositories.MappingApplicationProfile), typeof(BS.Repositories.MappingApplicationProfile));
+            services.AddAutoMapper(typeof(MappingProfile), typeof(MappingProfile));
+            services.AddAutoMapper(typeof(MappingApplicationProfile), typeof(MappingApplicationProfile));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             // Health check
             services.AddHealthChecks();

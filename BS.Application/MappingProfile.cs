@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using BS.Contracts.PostAggregations;
-using BS.Repositories.Models;
-using BS.Repositories.Posts.Commands;
+using BS.Application.Models;
+using BS.Application.Posts.Commands;
 
-namespace BS.Repositories
+namespace BS.Application
 {
     public class MappingApplicationProfile : Profile
     {
         public MappingApplicationProfile()
         {
 
-            CreateMap<CreatingPostCommand, Post>()
+            CreateMap<CreatingPostCommand, PostDto>()
                 .ForMember(d => d.Content, opt => opt.MapFrom(src => src.Content))
                 .ForMember(d => d.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(d => d.Author, opt =>
@@ -23,10 +23,7 @@ namespace BS.Repositories
                                 Surname = src.Author.Surname
                             }
                             : null);
-                })
-              .ForMember(d => d.AuthorId, opt => opt.MapFrom(src => src.Author.Id));
-
-
+                });
 
             PostMapping();
 

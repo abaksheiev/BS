@@ -1,26 +1,25 @@
 ﻿using AutoMapper;
-using BS.Repositories.Models;
-using BS.Repositories.Posts.Commands;
 using BS.Contracts.PostAggregations;
+using BS.Domain;
+using BS.Application.Posts.Commands;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
-namespace BS.Repositories.Posts.CommandHandlers
+namespace BS.Application.Posts.CommandHandlers
 {
-    public class CreatePostCommandHandler(BlogContext _ctx, IMapper _mapper)
+    public class CreatePostCommandHandler(PostAggregate postAggregate, IMapper _mapper)
         : IRequestHandler<CreatingPostCommand, PostDto>
     {
 
         async Task<PostDto> IRequestHandler<CreatingPostCommand, PostDto>.Handle(CreatingPostCommand request, CancellationToken cancellationToken)
         {
-            var dbModel = _mapper.Map<Post>(request);
+            // Build DTO from Request
+            var dtoPost = _mapper.Map<PostDto>(request);
 
-            _ctx.Posts.Add(dbModel);
+            // Crate Post
+            var post = postAggregate.CreatePost(dtoPost);
 
-            await _ctx.SaveChangesAsync();
-
-           
-            return _mapper.Map<PostDto>(dbModel);
+            // Return created post
+            return await postAggregate.GetPostById(post, true);
         }
     }
 }

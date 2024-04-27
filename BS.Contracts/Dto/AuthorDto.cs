@@ -1,6 +1,4 @@
-﻿using BS.Contracts.ApiDtos;
-
-namespace BS.Contracts.PostAggregations
+﻿namespace BS.Contracts.PostAggregations
 {
     public class AuthorDto
     {

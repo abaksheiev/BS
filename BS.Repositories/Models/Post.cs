@@ -1,4 +1,4 @@
-﻿namespace BS.Repositories.Models
+﻿namespace BS.Application.Models
 {
     public class Post
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BS.Contracts.ApiDtos;
 using BS.Contracts.PostAggregations;
-using BS.Repositories.Models;
+using BS.Application.Models;
 
 namespace BS.Init
 {

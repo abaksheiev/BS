@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BS.Application\BS.Application.csproj" />
     <ProjectReference Include="..\BS.Core\BS.Core.csproj" />
+    <ProjectReference Include="..\BS.Domain\BS.Domain.csproj" />
     <ProjectReference Include="..\BS.Repositories\BS.Repositories.csproj" />
   </ItemGroup>
 
