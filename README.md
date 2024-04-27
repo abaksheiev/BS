@@ -49,7 +49,7 @@ $ curl -X 'POST' \
 }
 ```
 
-Example of GEt(with author)
+Example of GET(with author)
 
 ```html
 curl -X 'GET' \
@@ -70,6 +70,9 @@ curl -X 'GET' \
    }
 }
 ```
+Solution Design 
+
+![Coverage](https://github.com/abaksheiev/BS/blob/master/imgs/Design.png)
 
 Code coverage: https://github.com/FortuneN/FineCodeCoverage/releases
 
