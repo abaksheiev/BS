@@ -9,7 +9,18 @@ namespace BS.Application
     {
         public MappingApplicationProfile()
         {
+            CommandToDTOs();
 
+            PostMapping();
+
+            AuthorMapping();
+        }
+
+        /// <summary>
+        /// Convert Command to DTOs
+        /// </summary>
+        private void CommandToDTOs()
+        {
             CreateMap<CreatingPostCommand, PostDto>()
                 .ForMember(d => d.Content, opt => opt.MapFrom(src => src.Content))
                 .ForMember(d => d.Description, opt => opt.MapFrom(src => src.Description))
@@ -24,10 +35,6 @@ namespace BS.Application
                             }
                             : null);
                 });
-
-            PostMapping();
-
-            AuthorMapping();
         }
 
         /// <summary>

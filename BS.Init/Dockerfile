@@ -11,6 +11,7 @@ WORKDIR /src
 COPY ["BS.Init/BS.Init.csproj", "BS.Init/"]
 COPY ["BS.Application/BS.Application.csproj", "BS.Application/"]
 COPY ["BS.Contracts/BS.Contracts.csproj", "BS.Contracts/"]
+COPY ["BS.Domain/BS.Domain.csproj", "BS.Domain/"]
 COPY ["BS.Repositories/BS.Repositories.csproj", "BS.Repositories/"]
 COPY ["BS.Core/BS.Core.csproj", "BS.Core/"]
 RUN dotnet restore "./BS.Init/BS.Init.csproj"
