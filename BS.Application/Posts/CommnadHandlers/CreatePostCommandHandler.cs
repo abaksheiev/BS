@@ -3,10 +3,12 @@ using BS.Contracts.PostAggregations;
 using BS.Domain;
 using BS.Application.Posts.Commands;
 using MediatR;
+using BS.Contracts.Repositories;
+using BS.Application.Models;
 
 namespace BS.Application.Posts.CommandHandlers
 {
-    public class CreatePostCommandHandler(PostAggregate postAggregate, IMapper _mapper)
+    public class CreatePostCommandHandler(IPostRepository postRepository, IMapper _mapper)
         : IRequestHandler<CreatingPostCommand, PostDto>
     {
 
@@ -16,10 +18,15 @@ namespace BS.Application.Posts.CommandHandlers
             var dtoPost = _mapper.Map<PostDto>(request);
 
             // Crate Post
-            var post = await postAggregate.CreatePostAsync(dtoPost);
+            var postAggregate = PostAggregateRoot.Create(dtoPost,postRepository, _mapper);
+            if (request.Author != null) {
+                postAggregate.AddAuthor(request.Author);
+            }
 
+            postAggregate.Save();
+            
             // Return created post
-            return await postAggregate.GetPostById(post, true);
+            return await postAggregate.GetPostById(postAggregate.Post.Id, true);
         }
     }
 }

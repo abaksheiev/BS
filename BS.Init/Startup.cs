@@ -3,7 +3,9 @@ using BS.Application.Posts.CommandHandlers;
 using BS.Contracts.ApiDtos;
 using BS.Contracts.PostAggregations.Controllers;
 using BS.Contracts.PostAggregations.Validators;
+using BS.Contracts.Repositories;
 using BS.Domain;
+using BS.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace BS.Init
@@ -31,8 +33,6 @@ namespace BS.Init
 
             services.AddMediatR(i => i.RegisterServicesFromAssembly(typeof(CreatePostCommandHandler).Assembly));
 
-            // AggregateRoots
-            services.AddScoped(typeof(PostAggregate), typeof(PostAggregate));
             // Service
             services.AddSingleton(typeof(IValidator<PostApiDto>), typeof(PostApiDtoValidator));
             services.AddSingleton(typeof(IValidator<AuthorApiDto>), typeof(AuthorApiDtoValidator));
@@ -43,6 +43,8 @@ namespace BS.Init
             // DataBase
             services.AddDbContext<BlogContext>(options =>
                     options.UseInMemoryDatabase("FakeBlog"));
+            // Repositories
+            services.AddScoped(typeof(IPostRepository), typeof(PostRepository));
 
             // External nugets
             services.AddAutoMapper(typeof(MappingProfile), typeof(MappingProfile));
