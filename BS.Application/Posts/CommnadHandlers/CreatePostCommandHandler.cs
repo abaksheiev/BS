@@ -18,7 +18,7 @@ namespace BS.Application.Posts.CommandHandlers
             var dtoPost = _mapper.Map<PostDto>(request);
 
             // Crate Post
-            var postAggregate = PostAggregateRoot.Create(dtoPost,postRepository, _mapper);
+            var postAggregate = PostAggregateRoot.Create(dtoPost, postRepository, _mapper);
             if (request.Author != null) {
                 postAggregate.AddAuthor(request.Author);
             }
